@@ -1,0 +1,34 @@
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  #app {
+    padding-top: 20px; /* Add buffer space under the logo */
+  }
+  
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 200px;
+  }
+  
+
+  /*Button*/
+  .button {
+    background-color: #6200ea; /* Prettier button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+  }
+  
+  .button:hover {
+    background-color: #3700b3;
+  }
+  
+
+  
