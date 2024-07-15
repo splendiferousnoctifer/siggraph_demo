@@ -13,10 +13,11 @@
   
   <script lang="ts">
   import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
-  
+  import router from '../router'; // Adjust the path as necessary
+
   const IMAGE_PATH = '/logo.png'; // Replace with your image path
   const DRAWING_KEY = 'tapPath'; // Global variable for the key under which the drawing path will be saved
-  const NEXT = '/final'; // Global variable for the next route
+
   
   export default defineComponent({
     name: 'TapPage',
@@ -68,7 +69,12 @@
           taps: this.taps,
         };
         localStorage.setItem('formData', JSON.stringify(formData));
-        this.$router.push(NEXT); // Navigate to final page after saving
+        const nextRoute = router.getRoutes().find(route => route.meta.order === this.$route.meta.order + 1);
+        if (nextRoute) {
+          this.$router.push({ name: nextRoute.name });
+        } else {
+          ElMessage.error('No next route found.');
+        } 
       },
       resizeCanvas() {
         const canvas = this.canvas;

@@ -1,6 +1,6 @@
 <template>
     <div class="drawing-page">
-      <h3>Slide to the right</h3>
+      <h3>Slide up &#8593</h3>
       <div class="canvas-container" ref="canvasContainer">
         <canvas 
           ref="canvas" 
@@ -20,10 +20,10 @@
   
   <script lang="ts">
   import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
-  import router from '../router'; // Adjust the path as necessary
+  import router from '../../router'; // Adjust the path as necessary
 
-  const IMAGE_PATH = '/logo.png'; // Replace with your image path
-  const DRAWING_KEY = 'drawingPath'; // Global variable for the key under which the drawing path will be saved
+  const IMAGE_PATH = '/siggraph_demo/view_svl.png'; // Replace with your image path
+  const DRAWING_KEY = 'slider_vertical_large_up'; // Global variable for the key under which the drawing path will be saved
 
   export default defineComponent({
     name: 'DrawingPage',

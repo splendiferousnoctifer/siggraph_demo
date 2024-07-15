@@ -8,12 +8,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import router from '../router'; // Adjust the path as necessary
+
+
 
 export default defineComponent({
   name: 'Home',
   methods: {
     agree() {
-      this.$router.push('/form');
+      const nextRoute = router.getRoutes().find(route => route.meta.order === this.$route.meta.order + 1);
+      if (nextRoute) {
+        this.$router.push({ name: nextRoute.name });
+      } else {
+        ElMessage.error('No next route found.');
+      }
     },
   },
 });
