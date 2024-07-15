@@ -2,8 +2,16 @@
   <div>
     <h1>Fill Out Information</h1>
     <el-form ref="form" :model="formData" :rules="rules" label-position="top" size="large">
-      <el-form-item label="Age" prop="age">
-        <el-input-number v-model="formData.age" required></el-input-number>
+      <el-form-item label="Age Group" prop="age">
+        <el-select v-model="formData.age" placeholder="Select your age group" required size="large" style="width:300px">
+          <el-option label="Under 18" value="Under 18"></el-option>
+          <el-option label="18-24" value="18-24"></el-option>
+          <el-option label="25-34" value="25-34"></el-option>
+          <el-option label="35-44" value="35-44"></el-option>
+          <el-option label="45-54" value="45-54"></el-option>
+          <el-option label="55-64" value="55-64"></el-option>
+          <el-option label="65 and over" value="65 and over"></el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="Gender" prop="gender">
         <el-select v-model="formData.gender" placeholder="Select your gender" required size="large" style="width:300px">
@@ -37,13 +45,13 @@ export default defineComponent({
   data() {
     return {
       formData: {
-        age: null,
+        age: '',
         gender: '',
         handedness: '',
       },
       rules: {
         age: [
-          { required: true, message: 'Age is required', trigger: 'blur' }
+          { required: true, message: 'Age group is required', trigger: 'change' }
         ],
         gender: [
           { required: true, message: 'Gender is required', trigger: 'change' }
@@ -65,7 +73,7 @@ export default defineComponent({
           } else {
             ElMessage.error('No next route found.');
           }        
-    } else {
+        } else {
           ElMessage.error('Please complete the form before continuing.');
           return false;
         }
@@ -91,10 +99,6 @@ form {
 
 form label {
   font-weight: 500;
-}
-
-form input[type="number"] {
-  width: 100px;
 }
 
 form select,
