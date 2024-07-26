@@ -19,10 +19,22 @@ import SliderRadialLargeCounterclockwise from '../views/interactionViews/SliderR
 import SliderRadialSmallClockwise from '../views/interactionViews/SliderRadialSmallClockwise.vue';
 import SliderRadialSmallCounterclockwise from '../views/interactionViews/SliderRadialSmallCounterclockwise.vue';
 import PlaybackPage from '../views/PlaybackPage.vue';
+import Agree from '../views/Agree.vue';
 
-const routes: Array<RouteRecordRaw> = [
+// Fixed routes at the beginning and end
+const fixedStartRoutes: Array<RouteRecordRaw> = [
   { path: '/', name: 'Home', component: Home },
+  { path: '/agree', name: 'Agree', component: Agree },
   { path: '/form', name: 'FormPage', component: FormPage },
+];
+
+const fixedEndRoutes: Array<RouteRecordRaw> = [
+  { path: '/final', name: 'FinalPage', component: FinalPage },
+  { path: '/playback', name: 'PlaybackPage', component: PlaybackPage }
+];
+
+// Routes to be randomized
+const randomizableRoutes: Array<RouteRecordRaw> = [
   { path: '/button_large', name: 'Button Large', component: ButtonBig },
   { path: '/button_small', name: 'Button Small', component: ButtonSmall },
   { path: '/slider_vertical_large_up', name: 'Slider Vertical Large Up', component: SliderVerticalLargeUp },
@@ -36,9 +48,23 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/slider_radial_large_clockwise', name: 'Slider Radial Large Clockwise', component: SliderRadialLargeClockwise },
   { path: '/slider_radial_large_counterclockwise', name: 'Slider Radial Large Counterclockwise', component: SliderRadialLargeCounterclockwise },
   { path: '/slider_radial_small_clockwise', name: 'Slider Radial Small Clockwise', component: SliderRadialSmallClockwise },
-  { path: '/slider_radial_small_counterclockwise', name: 'Slider Radial Small Counterclockwise', component: SliderRadialSmallCounterclockwise },
-  { path: '/final', name: 'FinalPage', component: FinalPage },
-  { path: '/playback', name: 'PlaybackPage', component: PlaybackPage }
+  { path: '/slider_radial_small_counterclockwise', name: 'Slider Radial Small Counterclockwise', component: SliderRadialSmallCounterclockwise }
+];
+
+// Function to shuffle array
+function shuffle(array: Array<RouteRecordRaw>) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Combine fixed and randomized routes
+const routes = [
+  ...fixedStartRoutes,
+  ...shuffle(randomizableRoutes),
+  ...fixedEndRoutes
 ];
 
 // Automatically assign order based on array index
