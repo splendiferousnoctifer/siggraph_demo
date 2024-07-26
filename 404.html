@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
   <script>
-    // Redirect to the base path with the correct sub-path
-    var path = window.location.pathname;
-    var newPath = '/siggraph_demo' + path;
-    if (!window.location.href.includes(newPath)) {
-      window.location.replace(newPath);
-    }
+    (function() {
+      var base = '/siggraph_demo/';
+      if (location.pathname.indexOf(base) !== 0) {
+        location.href = base + location.pathname + location.search + location.hash;
+      }
+    })();
   </script>
 </head>
 <body>
